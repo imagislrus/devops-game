@@ -643,6 +643,7 @@
         }
 
         function updateTimerDisplay() {
+            timeLeft--;
             const timerEl = document.getElementById('timer');
             timerEl.textContent = `⏱️ ${timeLeft}`;
             
@@ -719,6 +720,12 @@
 
         function nextQuestion() {
             currentQuestionIndex++;
+     if (currentQuestionIndex >= questions.length) {
+        clearInterval(timerInterval);
+        showResults(false);
+        return;
+    }
+
             showQuestion();
         }
 
@@ -745,7 +752,7 @@
             total: questions.length,
             percentage: Math.round((score / questions.length) * 100),
             timestamp: new Date().toISOString(),
-            timeRemaining: timeRemaining || 0,
+            timeRemaining: timeLeft || 0,
             timeout: timeOut || false
         })
     	}).then(r => r.json()).then(d => console.log('S3:', d)).catch(e => console.error(e));

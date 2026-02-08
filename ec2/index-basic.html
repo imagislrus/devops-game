@@ -680,6 +680,8 @@
         }
 
         function updateTimerDisplay() {
+            timeLeft--;  // ДОБАВЬТЕ ЭТУ СТРОКУ!
+
             const timerEl = document.getElementById('timer');
             timerEl.textContent = `⏱️ ${timeLeft}`;
             
@@ -756,7 +758,18 @@
 
         function nextQuestion() {
             currentQuestionIndex++;
-            showQuestion();
+        
+	// Проверяем: это был последний вопрос?
+        if (currentQuestionIndex >= questions.length) {
+        // ДА - игра закончена!
+        clearInterval(timerInterval);  // Останавливаем таймер
+        showResults(false);             // Показываем результаты
+        return;                         // ВАЖНО! Выходим из функции
+    }
+
+    // НЕТ - показываем следующий вопрос
+
+    showQuestion();
         }
 
         function addToTerminal(text, color = '#00ff00') {
@@ -782,7 +795,7 @@
             total: questions.length,
             percentage: Math.round((score / questions.length) * 100),
             timestamp: new Date().toISOString(),
-            timeRemaining: timeRemaining || 0,
+            timeLeft: timeLeft || 0,
             timeout: timeOut || false
         })
     }).then(r => r.json()).then(d => console.log('S3:', d)).catch(e => console.error(e));
