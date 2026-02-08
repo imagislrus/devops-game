@@ -770,7 +770,9 @@
         }
 
         function showResults(timeOut) {
-        fetch('/scripts/log-handler.php', {
+	clearInterval(timerInterval);
+        
+	fetch('/scripts/log-handler.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
