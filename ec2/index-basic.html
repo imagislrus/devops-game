@@ -770,6 +770,20 @@
         }
 
         function showResults(timeOut) {
+        fetch('/scripts/log-handler.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: playerEmail,
+            level: 'basic',
+            score: score,
+            total: questions.length,
+            percentage: Math.round((score / questions.length) * 100),
+            timestamp: new Date().toISOString(),
+            timeRemaining: timeRemaining || 0,
+            timeout: timeOut || false
+        })
+    }).then(r => r.json()).then(d => console.log('S3:', d)).catch(e => console.error(e));
             const endTime = Date.now();
             const elapsedTime = Math.round((endTime - startTime) / 1000);
             const percentage = Math.round((score / questions.length) * 100);
