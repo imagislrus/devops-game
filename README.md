@@ -1,5 +1,7 @@
 # 🎮 DevOps Defender Game
 
+**🌐 Live Demo: [mydevopsgame.site](http://mydevopsgame.site)**
+
 Интерактивная игра для изучения Linux команд с двумя уровнями сложности.
 
 ## 📋 Описание
