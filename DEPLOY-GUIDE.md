@@ -22,6 +22,7 @@
 - Компьютер (Windows или Mac)
 - Ethernet-кабель
 - Файл образа: `nanopi-backup.img.gz` (416 МБ)
+- https://drive.google.com/file/d/1JjJuEU2C4wQaU5jcJc_9oIgleatfaEZf/view?usp=drive_link
 - Файл конфигов: `nanopi-config-backup.tar.gz` (30 КБ)
 
 ---
